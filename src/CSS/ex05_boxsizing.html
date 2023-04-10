@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style type="text/css">
+    .a{
+       width:300px; height:200px;
+       background-color:skyblue;
+    }
+
+    .b{
+      width:300px; height:200px;
+      background-color:pink;
+      padding:20px;
+      border-style:solid dotted dashed double; /* 상 우 하 좌 */
+      border-color:red green blue; /* 상 좌우 하 */
+      border-width:10px 30px; /* 상하 좌우 */
+      box-sizing: border-box; /* 300*200의 크기는 변하지 않고 그 안에 padding과 border를 포함시킨다. 기본값 - content-box */
+    }
+
+  </style>
+</head>
+<body>
+<div class="a"> box-sizing 연습</div>
+<div class="b"> box-sizing 연습</div>
+</body>
+</html>
