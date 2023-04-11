@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style type="text/css">
+    div{
+      width: 300px; height: 200px;
+      border: 1px red solid;
+      overflow : auto;
+    }
+  </style>
+  <script type="text/javascript">
+    onload = function(){
+      // 이벤트 등록
+      let btnEle = document.getElementById("btn");
+      // btnEle.onclick = function(){} // 익명 함수
+      btnEle.onclick = btnCheck; //
+    }
+
+    // 버튼을 클릭했을 때 호출할 함수 - 여러 군데에서 호출할 것 같으면 함수를 밖에 정의
+    function btnCheck(e){
+      // alert("되니?");
+      // submit(전송) 기능을 막는 법을 알아야 한다
+      // return true; // 기본
+      // return false; // return 값이 버튼의 submit 기능으로 전달되는 것을 막는다
+
+      // input에 값이 있는지 체크하고 있다면 값을 출력과 div에 넣기
+      let inputEle = document.querySelector("[name=input]");
+      // alert(inputEle.value);
+      if(inputEle.value==""){
+        alert("입력을 해주세요.");
+        inputEle.focus(); // 커서 놓기
+        return false;
+      }
+
+      // 옮기기
+      let outEle = document.querySelector("[name=output]");
+      outEle.value = inputEle.value;
+
+      document.querySelector("#result").innerHTML += "<h5>" + inputEle.value + "</h5>"; // 마크업 적용 O
+      // document.querySelector("#result").innerText = "<h5>" + inputEle.value + "</h5>"; // 마크업 적용 X
+
+      // 첫 번째 textbox 초기화
+      inputEle.value = "";
+      inputEle.focus();
+
+      e.preventDefault(); // submit 버튼 + 다른 곳에서도 쓴다
+    }
+  </script>
+</head>
+<body>
+  <h2>javaScript에서 폼 요소 접근하기</h2>
+  <form action="http://www.naver.com" method="get"> <!-- action: 이동하는 경로 -->
+    입력 : <input type = "text" name = "input"><br>
+    출력 : <input type = "text" name = "output"><br>
+
+    <button id="btn">옮기기</button> <!-- 폼이 없을 때 그냥 button, 폼이 있을 때 submit-전송의 기능 -->
+  </form>
+  <hr>
+  <div id="result"></div>
+
+</body>
+</html>

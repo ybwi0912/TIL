@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        // h3 태그를 클릭했을 때 호출될 함수를 만들자
+        function test(){
+            alert("^///^");
+            alert("4/11");
+        }
+    </script>
+</head>
+<body>
+<h2 onmouseover="" onmouseout="">java script 시작하기</h2>
+<h3 onclick="test()" >클릭해보세요 !</h3>
+
+<script>
+    // element를 찾아서 이벤트를 적용하는 방법
+    // 이벤트를 발생시킬 주체(객체)를 찾는다.
+    document.querySelector("h2").onmouseover = function(){
+        this.style.border='blue dotted 5px';
+    }
+
+    // 마우스를 out했을 때
+    document.querySelector("h2").addEventListener("mouseout", function(){
+        this.style.border='none';
+    }); // 스크립트 부분은 복잡해졌지만 html 부분은 전혀 손대지 않음
+</script>
+</body>
+</html>

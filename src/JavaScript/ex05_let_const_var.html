@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    let a;
+    var b;
+
+    document.write("<h3>");
+
+    // 템플릿 문자열
+    document.write("a = " + a + "<br>");
+    document.write(`b = ${b}<br>`);
+
+
+    // 변수 선언 위치 변경
+    // var b : 선언 전에 사용 가능
+    // let a : 선언 전에 사용할 수 없다
+    var b = "전상희"; // 동일 이름을 사용할 수 있다
+    // let a = "안녕!"; // 동일한 이름을 두 번 선언할 수 없다
+    document.write("let a = " + a + "<br>");
+    document.write(`var b = ${b}<br>`);
+
+    function test(){
+        var b = "지역변수 b";
+        //var name = "KB"; // 지역변수
+        name = "KB"; // var 키워드를 빼면 전역변수가 된다
+        document.write(`지역변수 b = ${b}<br>`);
+        document.write(`전역변수 this.b = ${this.b}<br>`);
+        document.write(`지역변수 name = ${name}<br>`);
+    }
+
+    document.write("</h3>");
+
+    // 함수를 호출해보자
+    test();
+
+    document.write(`<hr>함수 호출 후....<p>`);
+    document.write(`b = ${b}<br>`); // 나온다
+    document.write(`name = ${name}<br>`); // 안 나온다 -> 선언부에서 var를 빼면 출력됨!
+
+    /*function test2(){
+        document.write(`age = ${age}<br>`); // undefined
+        var age = 20;
+        {
+            var age = 30;
+            document.write(`age = ${age}<br>`); // 30
+        }
+        document.write(`age = ${age}<br>`); // 30
+    }*/
+
+    function test2(){ // 같은 이름의 함수를 주면 실행될 것인가? - overloading 되지 않음
+
+        alert("test2() 호출");
+    }
+
+    function test2(){
+        // document.write(`age = ${age}<br>`); // 선언 전 사용 불가 - error
+        let age = 20;
+        {
+            let age = 30; // block scope
+            document.write(`age = ${age}<br>`); // 30
+        }
+        document.write(`age = ${age}<br>`); // 20
+    }
+    // hoisting 개념(미리 메모리에 올라감) 때문에 같은 이름의 함수를 여러 개 선언해도 에러가 뜨지는 않지만
+    // 함수가 선언될 때마다 덮어씌워지기 때문에 가장 마지막에 선언한 함수가 실행된다
+    document.write("------------------------------------------------------------<p>");
+    test2();
+
+    const addr = "선릉";
+    document.write(`addr = ${addr}<br>`);
+    // addr = "서울"; -> error! 값 변경 불가
+</script>
+</body>
+</html>

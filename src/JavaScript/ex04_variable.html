@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>var vs let vs const 알아보기</h1>
+<script type="text/javascript">
+  document.write("<h3 style='color:red'>var를 이용해서 변수를 선언하자!</h3>");
+
+  var a;
+  var b=10;
+  var c=10.5;
+  var d=true;
+  var e="안녕";
+  f = "하하"; // var 생략 가능
+
+  document.write("<h3>");
+  document.write("a = " + a + ", typeof = " + (typeof a) + "<br>"); // 타입을 어떻게 보내는 걸까?
+  document.write("b = " + b + ", typeof = " + (typeof b) + "<br>");
+  document.write("c = " + c + ", typeof = " + (typeof c) + "<br>");
+  document.write("d = " + d + ", typeof = " + (typeof d) + "<br>");
+  document.write("e = " + e + ", typeof = " + (typeof e) + "<br>");
+  document.write("f = " + f + ", typeof = " + (typeof f) + "<hr>");
+
+  // 값 변경 - 값을 변경할 때 타입이 다시 변경된다
+  b = new Array(2, 3, 4);
+  d = "헉!";
+
+  document.write("a = " + a + ", typeof = " + (typeof a) + "<br>");
+  document.write("b = " + b + ", typeof = " + (typeof b) + "<br>");
+  document.write("c = " + c + ", typeof = " + (typeof c) + "<br>");
+  document.write("d = " + d + ", typeof = " + (typeof d) + "<br>");
+  document.write("e = " + e + ", typeof = " + (typeof e) + "<br>");
+  document.write("f = " + f + ", typeof = " + (typeof f) + "<hr>");
+
+  document.write("</h3>");
+</script>
+</body>
+</html>
