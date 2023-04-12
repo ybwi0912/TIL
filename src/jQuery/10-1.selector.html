@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script src="../js/jquery-3.6.1.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			// $("*").css("color", "red"); // 1. 모든 element에 색상을 준다 - css 함수 (속성, 값)
+			// 2. css 스크립트 <style type="text/css"> 로 주면 동적 처리를 해줄 수 없다
+			// document.querySelector("*").style.color="red"; // 3. javascript
+
+			// $("li").css("font-family", "궁서체");
+			// $("*").css("font-family", "궁서체");
+			/* $("h3, h4") // 큰따옴표 한 쌍 안에 모두 넣어줘야 한다!
+			.css("border", "solid red 3px")
+			.css("color", "white")
+			.css("background-color", "orange"); // method chain */
+
+			/* $("h3").css({"border":"solid red 3px",
+				"color":"white",
+				"background-color":"orange"}); */
+			// {속성 : value, 속성 : value, ...} 로 한 번에 처리할 수 있다
+
+			/* $("#tag").css("textDecoration", "underline"); // #으로 id 체크
+			$(".div").css({"border":"blue double 3px"}); // .으로 class 체크 */
+
+			//$("div ol li").css("color", "red"); // 전체 찾음
+			//$("div ol li:eq(2)").css("color", "red"); // li에서 n번째 거 찾아라
+			//$("div ol li:lt(2)").css("color", "red");
+			//$("div ol li:gt(2)").css("color", "red");
+
+			//$("div ol li:odd").css("color", "red"); // 홀수 인덱스에 적용
+			//$("div ol li:even").css("color", "red");
+
+			//$("div ol li:last").css("color", "red");
+			//$("div ol li:first").css("color", "red");
+
+			$("div ol li:not(:first)").css("color", "blue");
+		});
+	</script>
+
+
+</head>
+<body>
+	
+<h3>jQuery 기본 selector</h3>
+<h4>웹 프로그래밍</h4>
+<div class="div">
+	<ol>
+     	<li>jsp</li>
+		<li id="tag">javaScript</li>
+		<li>jQuery</li>
+		<li>Ajax</li>
+		<li>Ajax</li>
+		<li>Ajax</li>
+		<li>Ajax</li>
+		<li>Ajax</li>
+		<li>Ajax</li>
+		<li>Ajax</li>
+	</ol>
+</div>
+	
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>10-5 focus, blur</title>
+    <script src="../js/jquery-3.6.1.min.js"></script>
+    <script type = "text/javascript">
+        $(document).ready(function(){
+            $("#result").css({width:"200px", height:"150px", border:"red solid 2px"});
+
+            $("[type=text]")
+            .focus(function(){
+                $(this).css({background:"pink", color:"red", fontSize:"20px"}); // this는 자기 자신, 즉 focus가 놓인 주체
+            })
+            .blur(function(){
+                $(this).css({background:"white", color:"blue", fontSize:"15px"});
+
+                // text 값을 읽어서 div 영역에 추가하고자 한다
+                let name = $(this).val(); // 1. 값을 받아온다
+                // = this.value 해도 받아짐
+                console.log(name);
+
+                // div 영역에 text 누적
+                // text 박스에 값 지우고 커서 놓기
+
+                // 2. div 영역에 추가
+                let data = $("#result").html() + name + "<br>";
+                $("#result").html(data); // br 태그를 사용하기 때문에 text가 아닌 html을 사용해야 한다
+
+                $(this).val("");
+                $(this).focus();
+            }); // method chain
+
+
+        });
+    </script>
+
+</head>
+<body>
+<h1>focus 와 blur 이벤트</h1>
+
+<form>
+   이름 : <input type="text" name="name">
+ </form>	
+ 
+ <p>
+ <div id="result"></div>
+
+</body>
+</html>
+
+
+
+
+
+

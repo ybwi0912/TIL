@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>10-10 checkbox</title>
+<script src="../js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        // $("#chkAll").click(); - 표현식만 다르고 동작은 같다!
+        $("#chkAll").on("click", function(){
+            //alert(1)
+            // chkAll 선택되면 모든 checkbox를 선택! 아니면 해지
+            // alert(this.checked);
+            $(":checkbox").prop("checked", this.checked);
+            // 선택자들이 여러 개면 알아서 모든 선택자에 해당 코드를 넣어줌
+
+            if(this.checked)
+                $("span").text("전체해지");
+            else
+                $("span").text("전체선택");
+        });
+    })
+</script>
+</head>
+
+<body>
+  <h1>on 이벤트 </h1>
+  <h4>checkbox를 이용한 전체 선택</h4>
+  <form>
+    <input type="checkbox" id="chkAll" /><span>전체선택</span><p>
+       <div id="subCheck">
+       
+        <input type="checkbox" checked="checked" />C#
+        <input type="checkbox"  />HTML5
+        <input type="checkbox"  />Java
+        <input type="checkbox"  />JQuery
+        <input type="checkbox"  />JavaScript
+        <input type="checkbox"  />Spring
+        <input type="checkbox"  />JPA
+        <input type="checkbox"  />MyBatis
+      </div>
+</form>
+</body>
+</html>
+
+
+
+
+
