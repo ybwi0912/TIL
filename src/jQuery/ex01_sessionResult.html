@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>session - result</title>
+  <script type="text/javascript" src="../js/jquery-3.6.1.min.js"></script>
+  <script type="text/javascript">
+    $(function(){
+      // 정보 조회
+       function getInfo(){
+           let len = sessionStorage.length;
+           let str = "저장된 개수 : " + len + "<br>";
+
+           for(let i=0; i<len; i++){
+               let key = sessionStorage.key(i); // 0, 1, 2, ..번지에 해당하는 key가 나온다
+               let value = sessionStorage.getItem(key);
+               str += key + " = " + value + "<br>";
+           }
+           // str에 모든 정보가 담김! -> div 영역에 추가
+
+           $("#result").html(str); // getInfo가 호출되면
+       } // end of getInfo
+
+        getInfo();
+    }); // end of ready
+  </script>
+
+</head>
+<body>
+<h1>sessionStorage 정보 가져오기</h1>
+<div id="result">
+
+</div>
+</body>
+</html>

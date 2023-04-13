@@ -1,0 +1,43 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>12-8 툴팁 이벤트</title>
+<style>
+	a{text-decoration:none;color:red}
+	#tooltip{ // 이벤트 처리를 위한 툴팁
+		opacity:0.4; position:absolute;
+		display:none; border-radius:10px;
+		background-color:yellow; padding:5px;
+	}// none - 일단 안 나타나게 함
+
+</style>
+<script src="../js/jquery-3.6.1.min.js"></script>
+<script type = "text/javascript">
+    //마우스를 대면 span 태그의 요소가 보이게 하고자 한다
+    $(function(){
+        //$().mouseover().mouseout().mousemove();
+        $("a").hover(function(){
+            $("#tooltip").slideDown(0); // 보이는 건 down. 스피드 안 주면 기본으로 간다
+        }, function(){
+            $("#tooltip").slideUp(0);
+        }).mousemove(function(){
+            // 마우스의 좌표를 구해야 한다
+            let x = event.clientX; // x축 좌표
+            let y = event.clientY; // y축 좌표
+            console.log("x = " + x + ", y = " + y);
+
+            $("#tooltip").css({left: x+"px", top: y+"px"}); // 단위 붙여주길 원한다
+        });
+    });
+</script>
+
+</head>
+<body>
+
+<h4>slideDown() , slideUp()을 이용한 tooltip</h4>
+   <h2><a href="#">jQuery란</a> 무엇 인가?</h2>
+	<span id="tooltip">javaScript 라이브러리입니다.</span>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Session Storage</title>
+<style>
+ div{width:300px; height:100px ; border: 1px red solid;}
+</style>
+<script type="text/javascript" src="../js/jquery-3.6.1.min.js"></script>
+    <script>
+        $(function(){
+            // 브라우저 열리자마자 정보 조회
+            getInfo();
+
+            function getInfo(){
+                let len = sessionStorage.length;
+                let str = "저장된 개수 : " + len + "<br>";
+
+                for(let i=0; i<len; i++){
+                    let key = sessionStorage.key(i); // 0, 1, 2, ..번지에 해당하는 key가 나온다
+                    let value = sessionStorage.getItem(key);
+                    str += key + " = " + value + "<br>";
+                }
+
+                // str에 모든 정보가 담김! -> div 영역에 추가
+                $("#result").html(str); // getInfo가 호출되면
+            } // end of getInfo
+
+            $("#btnSave").click(function(){
+                let key = $("#s_key").val();
+                let value = $("#s_value").val();
+                if(key=="" || value==""){ // 유효성 체크 - 값이 없다면
+                    alert("key와 value를 입력하세용 !");
+                    return;
+                }
+
+                // sessionStorage에 저장
+                sessionStorage.setItem(key, value); // name, value 넣으면 저장 완료!
+
+                $("#s_key").val("");
+                $("#s_value").val("");
+                $("#s_key").focus();
+
+                // 정보를 다시 조회한다 -> 함수를 만들자
+                getInfo(); // ready됐을 때 호출되고 화면 갱신
+
+            }); // end of click(save button)
+
+            $("#btnClear").click(function(){
+                // 사용자 입력값을 받는 창
+                let key = prompt("삭제할 key를 입력하세요");
+                sessionStorage.removeItem(key);
+                // 입력한 키가 지워진다
+            });
+        }) // end of ready
+    </script>
+
+</head>
+<body>
+<h1> sessionStorage Test  - 브라우저 시작 ~ 종료될 때까지 유지 </h1>
+<form>
+  key : <input type="text" name="s_key" id="s_key"/>
+  value : <input type="text" name="s_value" id="s_value"/>
+  
+ <input type="button"  value="저장하기"  id="btnSave"/>
+ <button type="button" id="btnClear">정보 지우기 </button>
+ <hr>
+ <div id="result"></div>
+</form>
+
+<a href="ex01_sessionResult.html">session 정보 확인</a>
+
+</body>
+</html>
+
+
+
+
+
+

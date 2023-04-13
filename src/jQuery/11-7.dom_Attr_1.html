@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>11-7 dom attr</title>
+ <style type="text/css">
+   /*img{width: 100px; height: 100px}*/
+ </style>
+<script src="../js/jquery-3.6.1.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        // $().mouseover().mouseout(); // jquery는 method chain 기법을 많이 쓴다
+        // $().on().on();
+        $("#img").on({
+            mouseover: function(){
+                //$(this).attr("src", "img/star.png");
+                //$(this).attr("width", "200px");
+                //$(this).attr("height", "100px");
+
+                console.log("width " + $(this).attr("width"));
+
+                // -> 세 속성을 바로 주는 방법
+                $(this).attr({
+                    src : "img/star.png",
+                    width : $(this).attr("width") * 2,
+                    height : $(this).attr("height") * 2
+                });
+            },
+            mouseout : function(){
+                //$(this).attr("src", "img/star.png");
+                $(this).attr("src", function(i, v){
+                    console.log(i + " " + v);
+                });
+
+                $(this).attr("width", function(i, currentW){
+                    return currentW / 2;
+                });
+
+                $(this).attr("height", function(i, currentH){
+                    return currentH / 2;
+                });
+            }
+        });
+    });
+</script>
+
+</head>
+<body>
+<h1>Dom요소 속성 추가 </h1>
+<img src="img/heart.png" id="img"  width="50" height="50"/>
+
+</body>
+</html>

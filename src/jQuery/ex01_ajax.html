@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ex01 ajax</title>
+<style>
+	table{width: 600px ; height:auto; border: 5px inset green}
+	th,td{text-align:center; border:1px solid gray}
+</style>
+ <script type="text/javascript" src="../js/jquery-3.6.1.min.js"></script>
+
+ <script type="text/javascript">
+	 $(function(){
+	 	$("#send").click(function(){
+	 		// 비동기화 통신 - XMLHttpRequest 생성 -> open -> send -> response(응답) -> 화면 갱신
+	 		// ajax()가 한 번에 해결해준다 (선택자가 없다)(모든 정보는 중괄호 안에 들어간다)
+	 		$.ajax({
+	 			url: "ex01_serverPage.json", // 서버의 주소(요청 주소) - 차후에 java로 바뀔 것
+	 			type: "post", // 요청 방식(GET | POST) Restful API를 이용하게 되면 PUT, DELETE도 사용할 수 있다
+	 			dataType: "json", // 서버가 응답을 할 때 전달하는 데이터 타입 (기본 text | html | XML | json)
+	 			// json으로 하지 않으면 javascript에서 객체로 인식이 안 되기 때문에 반복문 돌리거나 처리할 수 없다
+	 			//data: , // 서버에게 전달하는 parameter 정보 - 여기서는 없음
+	 			success: function(data, status){ // 결과, 상태값
+	 				// 응답 결과를 받아서 화면을 갱신
+	 				// alert("data = " + data);
+	 				// alert("status = " + status);
+	 				let str="";
+	 				$.each(data, function(index, item){ // 선택자 없음. 배열이기 때문
+	 					// alert(index + " = " + item + ", " + item.name); // 키값
+	 					str+="<tr>";
+	 					str+=`<td>${item.name}</td>`;
+	 					str+=`<td>${item.age}</td>`;
+	 					str+=`<td>${item.addr}</td>`;
+	 					str+="</tr>";
+	 				});
+
+	 				// 추가 전에 제거
+	 				$("#table tr:gt(0)").remove(); // 0보다 큰 요소(이름, 나이, 주소 제외)들을 제거
+
+	 				$("#table tr:eq(0)").after(str); // tr의 첫 번째 거 뒤에다가 after값을 추가
+	 			}, // 응답 결과 성공일 때 함수 (function - callback 함수)
+	 			error: function(err, status){ // 결과, 상태값
+	 				// 에러 발생 - 대처
+	 				alert(err + " 발생, status = " + status);
+	 			} // 응답 결과 실패일 때 함수
+	 		}); // 가장 기본이 되는 속성들.. 이외에는 거의 쓸 일 없다
+	 	});
+	 })
+ </script>
+
+</head>
+<body>
+	<a href="#" id="send">데이터가져오기</a><p/>
+	
+  <table id="table">
+  	  <tr>
+  	  	<th>이름</th>
+		<th>나이</th>
+		<th>주소</th>
+  	  </tr>
+  	  <!-- 결과 출력!! -->
+  </table>
+</body>
+</html>
+
+
+
