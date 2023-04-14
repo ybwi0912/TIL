@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>|| KB IT's movie ||</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <style>
+        h1{text-shadow: 3px 4px 5px #000000}
+
+        .poster{ // 전체 이미지에 크기 조절하면 안 된다 ..
+            width:100px; height:100px;
+        }
+
+
+    </style>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script> <!--CDN 방법으로 연결-->
+    <script type="text/javascript">
+        $(function(){
+            // 로딩이 되면 localStorage에 있는 정보를 조회해서 table에 추가
+            getInfo();
+            function getInfo(){ // 삭제 버튼 눌렸을 때 정보 갱신하기 위한 함수
+                let len = localStorage.length;
+                let str = "";
+                let sum = 0;
+
+                for(let i=0; i<len; i++){
+                    let key = localStorage.key(i);
+                    let value = localStorage.getItem(key); // 문자열 형태로 받아온다. "ㅁ, ㅁ, ㅁ" -> 구분자를 기준으로 분리해야 한다
+
+                    let v = value.split(","); // , 기준으로 분리해 배열로 반환한다. v[0], v[1], ... 이런 식으로 사용
+                    // 새 테이블을 만든 뒤 배열의 값들을 넣는다
+                    // 테이블 내 항목 : 이미지, 번호, 제목, 가격 순서
+                    str += `<tr id=${key}>`;
+                    str += `<td><img src='img/${v[1]}' alt='d' class='poster'></td>`;
+                    str += `<td>${key}</td>`;
+                    str += `<td>${v[0]}</td>`;
+                    str += `<td>${v[2]}</td>`;
+                    str += `<td><button type="button" name="delButton">삭제</button></td>`
+                    str += `</tr>`;
+
+                    sum += Number(v[2]);
+                }
+                // table의 첫번째 행 뒤에 추가
+                $("#content").html(str);
+
+                $(".table-dark").html("합계 : " + sum + "원");
+
+                $("button[name=delButton]").click(function(){
+                    console.log("a");
+                    let key = $(this).parent().parent().attr("id");
+                    console.log(key);
+                    localStorage.removeItem(key);
+                    getInfo();
+                });
+            }
+
+
+
+
+        }) // end of ready
+
+    </script>
+</head>
+<body> <!-- background에 dark 속성을 줌 -->
+<div class="container-fluid text-center"> <!-- 전체 페이지의 역할 --> <!-- container-fluid 속성을 넣어주면 양옆의 여백이 사라진다 -->
+    <!-- text-center : 가운데 정렬 속성 -->
+  <header>
+    <h1 class="text-primary bg-warning p-5"><img src="img/logo.jpg" class="rounded" alt="">
+        Welcome to KB IT's movie theater :-3
+    </h1><!-- bg-warning : 주황색 배경 | p-n(숫자) : 패딩 살짝 .. -->
+  </header>
+
+    <!-- navbar-->
+    <nav class="nav justify-content-end" data-bs-theme="dark">
+        <a class="nav-link active" aria-current="page" href="index.html">메인</a>
+        <a class="nav-link" href="#">극장</a>
+        <a class="nav-link" href="#">예매</a>
+        <a class="nav-link" href="cart.html">장바구니</a>
+    </nav>
+
+    <table class="table table-hover align-middle"> <!-- table class를 줬기 때문에 테이블 레이아웃이 뜬다 -->
+        <!-- table-hover : 각 항목에 마우스를 올렸을 때 배경이 회색으로 변한다 -->
+        <thead>
+        <tr>
+            <th scope="col">이미지</th>
+            <th scope="col">상품번호</th>
+            <th scope="col">영화제목</th>
+            <th scope="col">상품가격</th>
+            <th scope="col">삭제</th>
+        </tr>
+        </thead>
+        <tbody class="table-group-divider" id="content"> <!-- javascript에서 컨트롤할 수 있게 id를 줬다 -->
+        <!--<tr>
+            <td>1</td>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+        </tr>-->
+
+        </tbody>
+        <tfoot>
+            <th colspan="5" class="table-dark">합계 : 0 원</th>
+        </tfoot>
+    </table>
+
+
+    <!-- footer -->
+    <footer class="bg-warning p-2"> <!--text-primary 속성 뺌-->
+        <h5>KB 3기 IT's Your Life</h5>
+        <p>서울시 강남구 선릉역 <a href="">http://www.kbit.co.kr</a></p>
+    </footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
