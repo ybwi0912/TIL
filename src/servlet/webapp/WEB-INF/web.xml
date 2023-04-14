@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>step07_Servlet</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+  </welcome-file-list>
+
+  <!-- servlet 생성 -->
+  <!-- lifeCycle = new ServletLifeCycle() -->
+  <servlet>
+    <servlet-name>life</servlet-name> <!-- 변수 -->
+    <servlet-class>kb.servlet.ServletLifeCycle</servlet-class>
+    <load-on-startup>1</load-on-startup> <!-- tomcat start될 때 서블릿을 생성 -->
+    <!-- load-on-startup이 없으면 사전 초기화가 아니라 사용자 요청이 들어올 때 서블릿이 생성됨 - 속도 느려짐. 거의 사전 초기화를 사용 -->
+    <!-- 숫자를 넣어서 여러 개 생성된 서블릿들의 순서를 지정할 수 있음. 순서가 중요하지 않거나 하나밖에 없다면 1을 지정한다 -->
+    <!-- 사전 초기화 : java의 singleton class가 되는 셈 - 딱 한 번만 생성해놓고 여기저기서 가져다 쓰는 형태. 대부분의 경우 사전 초기화를 실행한다 -->
+    <!-- 지연 초기화 : 사용자의 요청이 들어올 때 만들어진다. 이 경우에도 서블릿을 딱 한 번만 생성 -->
+    <!-- load-on-startup은 옵션이지만 거의 항상 같이 쓴다 -->
+
+  </servlet>
+
+  <!-- url 주소에서 http://localhost:8000/life 요청하면 lifeCycle을 호출 -->
+  <servlet-mapping>
+    <servlet-name>life</servlet-name>
+    <url-pattern>/life</url-pattern> <!-- 루트를 지정하지 않으면(/ 입력) 절대 안 돌아간다 !! -->
+  </servlet-mapping>
+  
+  <!-- hobbyCheck Servlet 등록 -->
+  <servlet>
+    <servlet-name>hobbyCheck</servlet-name>
+    <servlet-class>kb.servlet.HobbyCheckServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>hobbyCheck</servlet-name>
+    <url-pattern>/check</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>LifeCycle</servlet-name>
+    <servlet-class>servlet.LifeCycleServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>LifeCycle</servlet-name>
+    <url-pattern>/lifecycle</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>parameter</servlet-name>
+    <servlet-class>servlet.ParameterServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet-mapping>
+    <servlet-name>parameter</servlet-name>
+    <url-pattern>/params</url-pattern>
+  </servlet-mapping>
+</web-app>
